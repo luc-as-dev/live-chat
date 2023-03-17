@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import socket from "./socket";
+import LoginPage from "./views/LoginPage";
 
 type Props = {};
 
 export default function App({}: Props) {
   const [isConnected, setIsConnected] = useState<boolean>(false);
+
+  function login(username: string, password: string) {}
 
   useEffect(() => {
     function onConnect() {
@@ -24,5 +27,9 @@ export default function App({}: Props) {
     };
   }, []);
 
-  return <div>isConnected={isConnected ? "true" : "false"}</div>;
+  return (
+    <div className="max-w-lg mx-auto my-20 p-4">
+      <LoginPage />
+    </div>
+  );
 }
