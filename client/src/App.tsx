@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import socket from "./socket";
+import HomePage from "./views/HomePage";
 import SignInPage from "./views/SignInPage";
 import SignUpPage from "./views/SignUpPage";
 
 type Props = {};
 
 export default function App({}: Props) {
+  const navigate = useNavigate();
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [username, setUsername] = useState<string | null>(null);
 
@@ -28,6 +31,7 @@ export default function App({}: Props) {
 
     function signedIn(data: { username: string }) {
       setUsername(data.username);
+      navigate("/");
     }
 
     function invalid() {
@@ -61,7 +65,11 @@ export default function App({}: Props) {
 
   return (
     <div className="max-w-lg mx-auto my-20 p-4">
-      {!username && <SignUpPage onSubmit={signUp} />}
+      <Routes>
+        <Route path="/" element={<HomePage username={username} />} />
+        <Route path="/sign-up" element={<SignUpPage onSubmit={signUp} />} />
+        <Route path="/sign-in" element={<SignUpPage onSubmit={signIn} />} />
+      </Routes>
     </div>
   );
 }
