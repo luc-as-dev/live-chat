@@ -64,7 +64,7 @@ export default function App({}: Props) {
   }, []);
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-8">
+    <div className="fixed max-w-lg w-full h-screen flex justify-center px-4 py-8 pb-24">
       <Routes>
         <Route path="/" element={<HomePage username={username} />} />
         <Route path="/sign-up" element={<SignUpPage onSubmit={signUp} />} />
