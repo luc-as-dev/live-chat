@@ -24,7 +24,7 @@ export default function SignUpPage({ onSubmit }: Props) {
   return (
     <form
       onSubmit={submitHandler}
-      className="bg-gray-100 px-4 py-8 gap-8 flex flex-col rounded-md shadow-md"
+      className="bg-gray-100 my-20 px-4 py-8 gap-8 flex flex-col rounded-md shadow-md"
     >
       <h1 className="text-emerald-500 text-4xl font-bold text-center">
         Sign up
