@@ -21,6 +21,8 @@ export default function App({}: Props) {
   }
 
   useEffect(() => {
+    if (!username) navigate("/sign-in");
+
     function onConnect() {
       setIsConnected(true);
     }
@@ -64,7 +66,7 @@ export default function App({}: Props) {
   }, []);
 
   return (
-    <div className="fixed max-w-lg w-full h-screen flex justify-center px-4 py-8 pb-24">
+    <div className="fixed w-full h-screen flex justify-center items-center px-4 py-8 pb-24">
       <Routes>
         <Route path="/" element={<HomePage username={username} />} />
         <Route path="/sign-up" element={<SignUpPage onSubmit={signUp} />} />

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   onSubmit: (username: string, password: string) => void;
@@ -24,7 +25,7 @@ export default function SignInPage({ onSubmit }: Props) {
   return (
     <form
       onSubmit={submitHandler}
-      className="bg-gray-100 my-20 px-4 py-8 gap-8 flex flex-col rounded-md shadow-md"
+      className="bg-gray-100 my-20 px-4 py-8 gap-8 max-w-lg w-full flex flex-col rounded-md shadow-md"
     >
       <h1 className="text-emerald-500 text-4xl font-bold text-center">
         Sign in
@@ -49,6 +50,12 @@ export default function SignInPage({ onSubmit }: Props) {
       >
         Sign in
       </button>
+      <Link
+        className="text-sky-600 hover:text-sky-700 p-1 text-sm w-fit mx-auto"
+        to="/sign-up"
+      >
+        Don't have an account? Sign up here!
+      </Link>
     </form>
   );
 }
