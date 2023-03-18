@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("sign_in", async (data) => {
+  socket.on("sign_in", async (data: { username: string; password: string }) => {
     const { username, password } = data;
     console.log(username, password);
 
@@ -55,6 +55,24 @@ io.on("connection", (socket) => {
       }
     } catch (err) {
       socket.emit("sign_in_error");
+    }
+  });
+
+  socket.on("search_user", async (data: { username: string }) => {
+    const { username } = data;
+    console.log(`Searched: ${username}`);
+
+    try {
+      const regexp = new RegExp("^" + username);
+      const users = await User.find({ username: { $regex: "^" + username } });
+      console.log(users);
+      if (users) {
+        socket.emit("searched_users", { users });
+      } else {
+        socket.emit("searched_users", []);
+      }
+    } catch (err) {
+      socket.emit("searched_users", []);
     }
   });
 

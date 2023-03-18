@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 interface IUser {
   username: string;
   password: string;
+  friends: IUser[];
 }
 
 const userSchema = new mongoose.Schema<IUser>(
@@ -16,6 +17,11 @@ const userSchema = new mongoose.Schema<IUser>(
       type: String,
       required: true,
       minlength: 4,
+    },
+    friends: {
+      type: [mongoose.Types.ObjectId],
+      ref: "User",
+      default: [],
     },
   },
   {

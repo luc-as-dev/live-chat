@@ -1,4 +1,4 @@
-export default interface IFriend {
+export default interface IUser {
   _id: string;
   username: string;
 }
